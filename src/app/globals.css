@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+/*
+ * SVDS — SeuVoo Design System · tokens
+ * Claro é a identidade principal; escuro é construído à parte (não é inversão).
+ * Ver docs/DESIGN_SYSTEM.md.
+ */
+
+:root {
+  --canvas: #f8f9f7;
+  --surface: #ffffff;
+  --subtle: #f0f2ef;
+  --ink: #17212b;
+  --ink-2: #3a4650;
+  --muted: #5f6b75;
+  --line: #e2e7e5;
+  --line-strong: #c9d1ce;
+  --navy: #152c3d;
+  --navy-ink: #eef3f4;
+  --accent: #326d75;
+  --accent-strong: #275860;
+  --accent-soft: #e3eeee;
+  --positive: #2f7055;
+  --positive-soft: #e5f1ea;
+  --warning: #8f5c22;
+  --warning-mark: #b77a35;
+  --warning-soft: #f7eddf;
+  --critical: #a8413b;
+  --critical-soft: #f8e6e4;
+  --focus: #326d75;
+  --map-land: #eef1ee;
+  --map-water: #dfe8ea;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --canvas: #0e151b;
+    --surface: #141d25;
+    --subtle: #19242d;
+    --ink: #e5ebee;
+    --ink-2: #c3cdd3;
+    --muted: #93a1ab;
+    --line: #23303a;
+    --line-strong: #33424d;
+    --navy: #0a1720;
+    --navy-ink: #e5ebee;
+    --accent: #79b8bf;
+    --accent-strong: #9ccdd2;
+    --accent-soft: #19343a;
+    --positive: #79c39d;
+    --positive-soft: #16302a;
+    --warning: #e0ad6c;
+    --warning-mark: #e0ad6c;
+    --warning-soft: #33281a;
+    --critical: #ec958f;
+    --critical-soft: #3a1f1f;
+    --focus: #9ccdd2;
+    --map-land: #18222b;
+    --map-water: #0f1920;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --canvas: #0e151b;
+  --surface: #141d25;
+  --subtle: #19242d;
+  --ink: #e5ebee;
+  --ink-2: #c3cdd3;
+  --muted: #93a1ab;
+  --line: #23303a;
+  --line-strong: #33424d;
+  --navy: #0a1720;
+  --navy-ink: #e5ebee;
+  --accent: #79b8bf;
+  --accent-strong: #9ccdd2;
+  --accent-soft: #19343a;
+  --positive: #79c39d;
+  --positive-soft: #16302a;
+  --warning: #e0ad6c;
+  --warning-mark: #e0ad6c;
+  --warning-soft: #33281a;
+  --critical: #ec958f;
+  --critical-soft: #3a1f1f;
+  --focus: #9ccdd2;
+  --map-land: #18222b;
+  --map-water: #0f1920;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-subtle: var(--subtle);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-navy: var(--navy);
+  --color-navy-ink: var(--navy-ink);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-positive: var(--positive);
+  --color-positive-soft: var(--positive-soft);
+  --color-warning: var(--warning);
+  --color-warning-mark: var(--warning-mark);
+  --color-warning-soft: var(--warning-soft);
+  --color-critical: var(--critical);
+  --color-critical-soft: var(--critical-soft);
+
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+  /* Ícones de calendário/hora legíveis no tema escuro */
+  :root[data-theme="dark"] input::-webkit-calendar-picker-indicator {
+    filter: invert(0.85);
+  }
+}
+
+/* Tipografia SVDS */
+@utility t-display {
+  font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 560;
+}
+@utility t-title {
+  font-size: clamp(1.625rem, 1.3rem + 1.2vw, 2.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 560;
+}
+@utility t-heading {
+  font-size: 1.125rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+@utility t-label {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 550;
+  color: var(--muted);
+}
+/* Dados operacionais: horários, números de voo, códigos */
+@utility t-data {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Movimento: discreto e opcional */
+@keyframes sv-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes sv-highlight {
+  from {
+    background-color: var(--warning-soft);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+@keyframes sv-shimmer {
+  0% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.55;
+  }
+}
+@utility animate-enter {
+  animation: sv-enter 240ms var(--ease-out-quart) both;
+}
+@utility animate-highlight {
+  animation: sv-highlight 2.4s ease-out both;
+}
+@utility skeleton {
+  background: var(--subtle);
+  border-radius: 4px;
+  animation: sv-shimmer 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+/* MapLibre: atribuição discreta e legível */
+.maplibregl-ctrl-attrib {
+  font-size: 10px !important;
+}
